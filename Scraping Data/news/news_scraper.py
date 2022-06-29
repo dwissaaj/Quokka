@@ -13,14 +13,14 @@ def scraping_link(query:str,start_day:str,start_month:str,start_year:str,end_day
         "hl": "id",
         "num": 20,
         "tbs": f"cdr:1,cd_min:{start_day}/{start_month}/{start_year},cd_max:{end_day}/{end_month}/{end_year}",
-        "api_key": "03d39295ce583d1f73700a62f5fd56b76078215f63c82360e6d9d0cb34ff8f62"}
+        "api_key": "08091f7ec5df341bd96de2bbd3499b5aaf26b2172f1a25d4b849eb4ad46effbf"}
     search = GoogleSearch(params)
     result = search.get_dict()
     data = pd.DataFrame(result['news_results'])
     urls = data['link'].to_list()
     return urls
 
-link = scraping_link("MNC Play","01","01","2018","08","03","2022")
+link = scraping_link("holywings","06","29","2022","06","28","2022")
 
 data = []
 for url in link:
@@ -50,4 +50,4 @@ df = pd.concat(data)
 df = df.replace(to_replace='None', value=np.nan).dropna()
 old_dates = df['tanggal']
 df['tanggal'] = df['tanggal'].apply(lambda a: pd.to_datetime(a).date())
-df.to_excel("mnc.xlsx")
+df.to_excel("holywings.xlsx")
