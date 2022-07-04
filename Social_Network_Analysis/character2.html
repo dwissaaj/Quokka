@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "Lydia Bennet", "label": "Lydia Bennet", "shape": "dot"}, {"id": "Dug", "label": "Dug", "shape": "dot"}, {"id": "Jonathan", "label": "Jonathan", "shape": "dot"}, {"id": "Jasmine", "label": "Jasmine", "shape": "dot"}, {"id": "Miguel Rivera", "label": "Miguel Rivera", "shape": "dot"}, {"id": "Baloo", "label": "Baloo", "shape": "dot"}, {"id": "Hal Stewart", "label": "Hal Stewart", "shape": "dot"}, {"id": "Bellatrix Lestrange", "label": "Bellatrix Lestrange", "shape": "dot"}, {"id": "Frederico Corleone", "label": "Frederico Corleone", "shape": "dot"}, {"id": "Colin Creevey", "label": "Colin Creevey", "shape": "dot"}, {"id": "Heather Duke", "label": "Heather Duke", "shape": "dot"}, {"id": "Nemo", "label": "Nemo", "shape": "dot"}, {"id": "Fawn", "label": "Fawn", "shape": "dot"}, {"id": "Gobber", "label": "Gobber", "shape": "dot"}, {"id": "Prince Charming", "label": "Prince Charming", "shape": "dot"}, {"id": "Mowgli", "label": "Mowgli", "shape": "dot"}, {"id": "Ed", "label": "Ed", "shape": "dot"}, {"id": "Mary \"Boo\" Gibbs", "label": "Mary \"Boo\" Gibbs", "shape": "dot"}, {"id": "Daisy Buchanan", "label": "Daisy Buchanan", "shape": "dot"}, {"id": "Lavender Brown", "label": "Lavender Brown", "shape": "dot"}, {"id": "Darla", "label": "Darla", "shape": "dot"}, {"id": "Caesar Flickerman", "label": "Caesar Flickerman", "shape": "dot"}, {"id": "Duke Caboom", "label": "Duke Caboom", "shape": "dot"}, {"id": "Daniel LaRusso", "label": "Daniel LaRusso", "shape": "dot"}, {"id": "Stu Hopps", "label": "Stu Hopps", "shape": "dot"}, {"id": "Gigi", "label": "Gigi", "shape": "dot"}, {"id": "Augustus Gloop", "label": "Augustus Gloop", "shape": "dot"}, {"id": "Elle Evans", "label": "Elle Evans", "shape": "dot"}, {"id": "Tamatoa", "label": "Tamatoa", "shape": "dot"}, {"id": "David Mills", "label": "David Mills", "shape": "dot"}, {"id": "Lance Corporal Tom Blake", "label": "Lance Corporal Tom Blake", "shape": "dot"}, {"id": "Angela Hayes", "label": "Angela Hayes", "shape": "dot"}, {"id": "Ron Weasley", "label": "Ron Weasley", "shape": "dot"}, {"id": "The Cowardly Lion", "label": "The Cowardly Lion", "shape": "dot"}, {"id": "Peter Kavinsky", "label": "Peter Kavinsky", "shape": "dot"}, {"id": "Gilderoy Lockhart", "label": "Gilderoy Lockhart", "shape": "dot"}, {"id": "Miss Miriam Forcible", "label": "Miss Miriam Forcible", "shape": "dot"}, {"id": "Donkey", "label": "Donkey", "shape": "dot"}, {"id": "Kiara", "label": "Kiara", "shape": "dot"}, {"id": "Cruella de Vil", "label": "Cruella de Vil", "shape": "dot"}, {"id": "Roman Pearce", "label": "Roman Pearce", "shape": "dot"}, {"id": "Ryan Evans", "label": "Ryan Evans", "shape": "dot"}, {"id": "Hulk", "label": "Hulk", "shape": "dot"}, {"id": "Scrat", "label": "Scrat", "shape": "dot"}, {"id": "Kili", "label": "Kili", "shape": "dot"}, {"id": "Simba", "label": "Simba", "shape": "dot"}, {"id": "Tuffnut", "label": "Tuffnut", "shape": "dot"}, {"id": "Prince Naveen", "label": "Prince Naveen", "shape": "dot"}, {"id": "Gary \u0027Eggsy\u0027 Unwin / Galahad", "label": "Gary \u0027Eggsy\u0027 Unwin / Galahad", "shape": "dot"}, {"id": "Dudley Dursley", "label": "Dudley Dursley", "shape": "dot"}, {"id": "Jack Dawson", "label": "Jack Dawson", "shape": "dot"}, {"id": "Sam Wilson \"Falcon\"", "label": "Sam Wilson \"Falcon\"", "shape": "dot"}, {"id": "Dr. Frank-N-Furter", "label": "Dr. Frank-N-Furter", "shape": "dot"}, {"id": "Billy Batson \"Shazam\"", "label": "Billy Batson \"Shazam\"", "shape": "dot"}, {"id": "Dim", "label": "Dim", "shape": "dot"}, {"id": "Eddie Brock \"Venom\"", "label": "Eddie Brock \"Venom\"", "shape": "dot"}, {"id": "Aladdin", "label": "Aladdin", "shape": "dot"}, {"id": "Peregrin \"Pippin\" Took", "label": "Peregrin \"Pippin\" Took", "shape": "dot"}, {"id": "Other Father", "label": "Other Father", "shape": "dot"}, {"id": "Anakin Skywalker", "label": "Anakin Skywalker", "shape": "dot"}, {"id": "Freddie Mercury", "label": "Freddie Mercury", "shape": "dot"}, {"id": "Goofy", "label": "Goofy", "shape": "dot"}, {"id": "Mayor", "label": "Mayor", "shape": "dot"}, {"id": "Charlotte LaBouff", "label": "Charlotte LaBouff", "shape": "dot"}, {"id": "Marty McFly", "label": "Marty McFly", "shape": "dot"}, {"id": "Tigger", "label": "Tigger", "shape": "dot"}, {"id": "LeFou", "label": "LeFou", "shape": "dot"}, {"id": "Rick Dalton", "label": "Rick Dalton", "shape": "dot"}, {"id": "Erik Killmonger", "label": "Erik Killmonger", "shape": "dot"}, {"id": "Marla Singer", "label": "Marla Singer", "shape": "dot"}, {"id": "Lumiere", "label": "Lumiere", "shape": "dot"}, {"id": "Heloise", "label": "Heloise", "shape": "dot"}, {"id": "Pumbaa", "label": "Pumbaa", "shape": "dot"}, {"id": "Elizabeth Swann", "label": "Elizabeth Swann", "shape": "dot"}, {"id": "ESFP", "label": "ESFP", "shape": "dot"}, {"id": "Dolores Haze \"Lolita\"", "label": "Dolores Haze \"Lolita\"", "shape": "dot"}, {"id": "Jenny", "label": "Jenny", "shape": "dot"}, {"id": "Clawhauser", "label": "Clawhauser", "shape": "dot"}, {"id": "Pussycat", "label": "Pussycat", "shape": "dot"}, {"id": "Jar Jar Binks", "label": "Jar Jar Binks", "shape": "dot"}, {"id": "Bob Parr \"Mr. Incredible\"", "label": "Bob Parr \"Mr. Incredible\"", "shape": "dot"}, {"id": "Peter Quill \"Star-Lord\"", "label": "Peter Quill \"Star-Lord\"", "shape": "dot"}, {"id": "Scuttle", "label": "Scuttle", "shape": "dot"}, {"id": "Agent J / James Darrell Edwards III", "label": "Agent J / James Darrell Edwards III", "shape": "dot"}, {"id": "Crush", "label": "Crush", "shape": "dot"}, {"id": "Monkey", "label": "Monkey", "shape": "dot"}, {"id": "Erika", "label": "Erika", "shape": "dot"}, {"id": "Chewbacca", "label": "Chewbacca", "shape": "dot"}, {"id": "Dru", "label": "Dru", "shape": "dot"}, {"id": "Mater", "label": "Mater", "shape": "dot"}, {"id": "Dionne Davenport", "label": "Dionne Davenport", "shape": "dot"}, {"id": "Luis", "label": "Luis", "shape": "dot"}, {"id": "Debora", "label": "Debora", "shape": "dot"}, {"id": "Donny \"The Bear Jew\" Donowitz", "label": "Donny \"The Bear Jew\" Donowitz", "shape": "dot"}, {"id": "Tommy Williams", "label": "Tommy Williams", "shape": "dot"}, {"id": "Jessie", "label": "Jessie", "shape": "dot"}]);
+        edges = new vis.DataSet([{"from": "ESFP", "to": "Peter Quill \"Star-Lord\""}, {"from": "ESFP", "to": "Anakin Skywalker"}, {"from": "ESFP", "to": "Ron Weasley"}, {"from": "ESFP", "to": "Bellatrix Lestrange"}, {"from": "ESFP", "to": "Simba"}, {"from": "ESFP", "to": "Donkey"}, {"from": "ESFP", "to": "Bob Parr \"Mr. Incredible\""}, {"from": "ESFP", "to": "Jack Dawson"}, {"from": "ESFP", "to": "Aladdin"}, {"from": "ESFP", "to": "Marty McFly"}, {"from": "ESFP", "to": "Jasmine"}, {"from": "ESFP", "to": "Marla Singer"}, {"from": "ESFP", "to": "Erik Killmonger"}, {"from": "ESFP", "to": "Elizabeth Swann"}, {"from": "ESFP", "to": "Sam Wilson \"Falcon\""}, {"from": "ESFP", "to": "Chewbacca"}, {"from": "ESFP", "to": "Jar Jar Binks"}, {"from": "ESFP", "to": "Gilderoy Lockhart"}, {"from": "ESFP", "to": "Miguel Rivera"}, {"from": "ESFP", "to": "Peregrin \"Pippin\" Took"}, {"from": "ESFP", "to": "Pumbaa"}, {"from": "ESFP", "to": "Dudley Dursley"}, {"from": "ESFP", "to": "Nemo"}, {"from": "ESFP", "to": "Jessie"}, {"from": "ESFP", "to": "Prince Naveen"}, {"from": "ESFP", "to": "Tigger"}, {"from": "ESFP", "to": "Jenny"}, {"from": "ESFP", "to": "Charlotte LaBouff"}, {"from": "ESFP", "to": "Rick Dalton"}, {"from": "ESFP", "to": "Hulk"}, {"from": "ESFP", "to": "Lavender Brown"}, {"from": "ESFP", "to": "Caesar Flickerman"}, {"from": "ESFP", "to": "Augustus Gloop"}, {"from": "ESFP", "to": "Mater"}, {"from": "ESFP", "to": "Dug"}, {"from": "ESFP", "to": "Frederico Corleone"}, {"from": "ESFP", "to": "Peter Kavinsky"}, {"from": "ESFP", "to": "Clawhauser"}, {"from": "ESFP", "to": "Jonathan"}, {"from": "ESFP", "to": "Ed"}, {"from": "ESFP", "to": "David Mills"}, {"from": "ESFP", "to": "Heather Duke"}, {"from": "ESFP", "to": "Agent J / James Darrell Edwards III"}, {"from": "ESFP", "to": "Gobber"}, {"from": "ESFP", "to": "Crush"}, {"from": "ESFP", "to": "Lumiere"}, {"from": "ESFP", "to": "Scrat"}, {"from": "ESFP", "to": "Monkey"}, {"from": "ESFP", "to": "Ryan Evans"}, {"from": "ESFP", "to": "Eddie Brock \"Venom\""}, {"from": "ESFP", "to": "Billy Batson \"Shazam\""}, {"from": "ESFP", "to": "Kiara"}, {"from": "ESFP", "to": "Mowgli"}, {"from": "ESFP", "to": "Baloo"}, {"from": "ESFP", "to": "Elle Evans"}, {"from": "ESFP", "to": "Hal Stewart"}, {"from": "ESFP", "to": "Pussycat"}, {"from": "ESFP", "to": "Angela Hayes"}, {"from": "ESFP", "to": "Other Father"}, {"from": "ESFP", "to": "Tuffnut"}, {"from": "ESFP", "to": "Freddie Mercury"}, {"from": "ESFP", "to": "Erika"}, {"from": "ESFP", "to": "Daniel LaRusso"}, {"from": "ESFP", "to": "Mary \"Boo\" Gibbs"}, {"from": "ESFP", "to": "Kili"}, {"from": "ESFP", "to": "Luis"}, {"from": "ESFP", "to": "Lance Corporal Tom Blake"}, {"from": "ESFP", "to": "Daisy Buchanan"}, {"from": "ESFP", "to": "Miss Miriam Forcible"}, {"from": "ESFP", "to": "Dr. Frank-N-Furter"}, {"from": "ESFP", "to": "Gary \u0027Eggsy\u0027 Unwin / Galahad"}, {"from": "ESFP", "to": "Debora"}, {"from": "ESFP", "to": "Prince Charming"}, {"from": "ESFP", "to": "Fawn"}, {"from": "ESFP", "to": "LeFou"}, {"from": "ESFP", "to": "Donny \"The Bear Jew\" Donowitz"}, {"from": "ESFP", "to": "Mayor"}, {"from": "ESFP", "to": "Tamatoa"}, {"from": "ESFP", "to": "Heloise"}, {"from": "ESFP", "to": "Dionne Davenport"}, {"from": "ESFP", "to": "Scuttle"}, {"from": "ESFP", "to": "Colin Creevey"}, {"from": "ESFP", "to": "Stu Hopps"}, {"from": "ESFP", "to": "Dolores Haze \"Lolita\""}, {"from": "ESFP", "to": "Dru"}, {"from": "ESFP", "to": "Duke Caboom"}, {"from": "ESFP", "to": "Darla"}, {"from": "ESFP", "to": "Tommy Williams"}, {"from": "ESFP", "to": "Lydia Bennet"}, {"from": "ESFP", "to": "Gigi"}, {"from": "ESFP", "to": "Dim"}, {"from": "ESFP", "to": "Cruella de Vil"}, {"from": "ESFP", "to": "Goofy"}, {"from": "ESFP", "to": "Roman Pearce"}, {"from": "ESFP", "to": "The Cowardly Lion"}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+import requests
+import pandas as pd
+input_sentence = "padang adalah surga dunia bagi para indonesia bacpakcer"
+headers = {'x-api-key': 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ik5XSTBNemRsTXprdE5tSmtNaTAwTTJZMkxXSTNaamN0T1dVMU5URmxObVF4Wm1KaSIsInR5cCI6IkpXVCJ9.eyJhcHBsaWNhdGlvbl9pZCI6NzAzNjMsImxpY2Vuc2Vfa2V5IjoiMmI5MGZkMDUtYzQ2ZS00NWQyLWEwYWQtNDRlMmEwMGQxYWRhIiwidW5pcXVlX2tleSI6IjE1Mzc0Nzg2LTI4N2ItNDQ3MC1hYWViLTU3NWM5MDkxODMyZSIsInByb2R1Y3RfaWQiOjE0LCJhdWQiOiJhcGktc2VydmljZSIsInN1YiI6Ijk3ZDljMjg3LWU5YzEtNGE4Yi1hZDMyLTI1ZjgwMzhjZDhlYSIsImV4cCI6MTY4ODA1MzE4OCwiaXNzIjoiY29uc29sZSIsImlhdCI6MTY1NjUxNzE4OH0.D4rPqfCtoipVy8jm9qGC9V1wW0zaE4yk23H7Y5y6602NJp6VTQPMWzIQIoGzkvoKI86WSl9t5C4iP0GqLGAMelvnmtgWoq4wiyw0c6FPBZzWGDdZ6k98FCsP4uMMjMl5pvVs-5uAjmzCBws-gyTBFfUrjOheATvTSk2plaUAs3ojr6DzmfnUdrCnxEo0OY_Dd23L1_STkxINMSxxlxb7vPIvu9e7EsRRq_eCCx2eBv0stYVM9Y_GA3RmEvOIU4IateS8RsmCiVygI4DBoqNw78PI3iR0_tVD_loybn1T8QBqKC8r9XFUcZWiZdureMak4yxU_8IAXnoG99B2VpTyqQ',
+           'Content-Type': 'application/json'}
+body = {'text': input_sentence}
+r_pos = requests.post('https://api.prosa.ai/v1/sentiments', headers = headers, json = body)
+print(r_pos.content)

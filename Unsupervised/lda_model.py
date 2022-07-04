@@ -9,9 +9,9 @@ from gensim.models import TfidfModel
 from nltk.tokenize import word_tokenize
 from pyLDAvis import gensim_models
 from wordcloud import WordCloud
-from Modul.funcm import functions
+from ModulFunc.funcm import functions
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-fc = functions
+fc = functions()
 class Lda():
     def generate_word(dataframe, column: str):
         """
@@ -149,7 +149,7 @@ class Lda():
         plt.margins(x=0, y=0)
         plt.show()
 
-functions.load_data()
+data = fc.load_data("Voxpopdata.xlsx")
 """
 df = load_data("Voxpopdata.xlsx")
 remove_user = remove_username(df,"text")
