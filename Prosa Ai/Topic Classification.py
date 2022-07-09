@@ -1,0 +1,9 @@
+import requests
+import pandas as pd
+data = pd.read_json("sa.json")
+datas = data.to_string()
+headers = {'x-api-key': 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ik5XSTBNemRsTXprdE5tSmtNaTAwTTJZMkxXSTNaamN0T1dVMU5URmxObVF4Wm1KaSIsInR5cCI6IkpXVCJ9.eyJhcHBsaWNhdGlvbl9pZCI6NzE0MTUsImxpY2Vuc2Vfa2V5IjoiZTM3ZjY5NjctOTQ0ZC00Y2FjLWI2MzMtODk2N2UwY2E3YTlmIiwidW5pcXVlX2tleSI6IjdlYTE0NmM3LTU3N2ItNDIxMC04YzZhLTAwNmJjMTk2M2VhYSIsInByb2R1Y3RfaWQiOjYsImF1ZCI6ImFwaS1zZXJ2aWNlIiwic3ViIjoiOTdkOWMyODctZTljMS00YThiLWFkMzItMjVmODAzOGNkOGVhIiwiZXhwIjoxNjg4NDc1NDE3LCJpc3MiOiJjb25zb2xlIiwiaWF0IjoxNjU2OTM5NDE3fQ.eRMGhUMKtMXrkCL3qR6WLI1EuVTZSYu_MsQlBMIDZwadC5dNkysbSCGiyDFoi2qUFVgrkoZCs_wy7k8sD3pLO3Bp9R29XauI12Ze0tGrp6umK9O9JtuqEE1BU-QeqdDFK4oW1m6fvxq-wsc94eQ6dSdNw7jr1PQ56batVtTIp9p8RJPWxBw0lfkbBw4Zv8LWCjJ-ZJv9Omj6EwDqQV09yRpk_2F9-MzWS4femU6NQm6-zNP-dfavka7MCKIGWVm2Ga85v8ZqHLOImrLFfcGmfgRyDxLMjN3xfpzI8rQFgiNs4Q1aSREccvU8fUHsmjy9UfxY7QX-Zn0XbhLPf5xhOA',
+           'Content-Type': 'application/json'}
+body = {'text': datas}
+r_pos = requests.post('https://api.prosa.ai/v2/text/news-topic', headers = headers, json = body)
+print(r_pos.content)

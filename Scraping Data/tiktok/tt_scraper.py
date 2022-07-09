@@ -1,6 +1,5 @@
 from TikTokApi import TikTokApi
-
-api = TikTokApi(custom_verify_fp="verify_4f1234903b363062aff069c332688892")
-x = []
-for videos in api.search.users_alternate('holywings'):
-    print(videos)
+verifyFp = "verify_l56tsajf_PQbOUBbe_ecKx_47ST_8yq4_W0wyv5tVksFK"
+api = TikTokApi(custom_verify_fp=verifyFp)
+userdata = api.user(username='eliaveve_').info()
+print(userdata)

@@ -2,7 +2,7 @@ from facebook_scraper import get_posts
 import pandas as pd
 
 
-get_post = get_posts('irwandwi.arianto', pages=20,options={"comments": True})
+get_post = get_posts('ltmptofficial', pages=2,options={"comments": True})
 post_id = []
 text = []
 post_text = []
